@@ -822,6 +822,40 @@
                 Value="{DynamicResource ShowDesktopIconImageSmall}" />
     </Style>
 
+    <Style TargetType="Border"
+       x:Key="NotifyIconBorder">
+        <Setter Property="Background"
+            Value="Transparent" />
+        <Setter Property="BorderThickness"
+            Value="0" />
+        <Setter Property="BorderBrush"
+            Value="Transparent" />
+        <Setter Property="Padding"
+            Value="0" />
+
+        <!--
+            Uncomment these triggers to enable hover & click visual feedback for notify icons.
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+                    <Setter Property="Background"
+                            Value="{DynamicResource ButtonHoverBackground}" />
+                    <Setter Property="BorderBrush"
+                            Value="{DynamicResource ButtonHoverBorder}" />
+                </Trigger>
+
+                <DataTrigger Binding="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"
+                             Value="Pressed">
+                    <Setter Property="Background"
+                            Value="{DynamicResource ButtonPressedBackground}" />
+                    <Setter Property="BorderBrush"
+                            Value="{DynamicResource ButtonPressedBorder}" />
+                </DataTrigger>
+            </Style.Triggers>
+            -->
+    </Style>
+
     <Style TargetType="Image"
            x:Key="NotifyIcon"
            BasedOn="{StaticResource TaskIcon}">

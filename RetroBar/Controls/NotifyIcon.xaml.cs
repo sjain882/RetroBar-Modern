@@ -123,6 +123,7 @@ namespace RetroBar.Controls
         private void NotifyIcon_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
+            NotifyIconBorder.Tag = "Pressed"; // Must follow e.Handled!
             Host?.SetTrayHost();
             if (e.ChangedButton != MouseButton.Left)
             {
@@ -133,6 +134,7 @@ namespace RetroBar.Controls
         private void NotifyIcon_OnMouseUp(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
+            NotifyIconBorder.Tag = null;
             if (e.ChangedButton == MouseButton.Left)
             {
                 TrayIcon?.IconMouseDown(e.ChangedButton, MouseHelper.GetCursorPositionParam(), System.Windows.Forms.SystemInformation.DoubleClickTime);
@@ -159,6 +161,7 @@ namespace RetroBar.Controls
         private void NotifyIcon_OnMouseLeave(object sender, MouseEventArgs e)
         {
             e.Handled = true;
+            NotifyIconBorder.Tag = null;
             TrayIcon?.IconMouseLeave(MouseHelper.GetCursorPositionParam());
         }
 

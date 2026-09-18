@@ -822,38 +822,58 @@
                 Value="{DynamicResource ShowDesktopIconImageSmall}" />
     </Style>
 
+    <!-- Outer Border Style: Right and Bottom Edges -->
     <Style TargetType="Border"
-       x:Key="NotifyIconBorder">
+       x:Key="NotifyIconOuterBorder">
         <Setter Property="Background"
             Value="Transparent" />
         <Setter Property="BorderThickness"
-            Value="0" />
+            Value="0,0,1,1" />
+        <Setter Property="BorderBrush"
+            Value="Transparent" />
+        <Style.Triggers>
+            <!-- Hover State: Right & Bottom Shadow -->
+            <Trigger Property="IsMouseOver"
+                 Value="True">
+                <Setter Property="BorderBrush"
+                    Value="{DynamicResource ButtonShadow}" />
+            </Trigger>
+
+            <!-- Pressed / Sunken State: Right & Bottom Highlight -->
+            <DataTrigger Binding="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"
+                     Value="Pressed">
+                <Setter Property="BorderBrush"
+                    Value="{DynamicResource ButtonHighlight}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Inner Border Style: Left and Top Edges -->
+    <Style TargetType="Border"
+       x:Key="NotifyIconInnerBorder">
+        <Setter Property="Background"
+            Value="Transparent" />
+        <Setter Property="BorderThickness"
+            Value="1,1,0,0" />
         <Setter Property="BorderBrush"
             Value="Transparent" />
         <Setter Property="Padding"
-            Value="0" />
+            Value="1" />
+        <Style.Triggers>
+            <!-- Hover State: Left & Top Highlight -->
+            <DataTrigger Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource AncestorType=Border, AncestorLevel=1}}"
+                     Value="True">
+                <Setter Property="BorderBrush"
+                    Value="{DynamicResource ButtonHighlight}" />
+            </DataTrigger>
 
-        <!--
-            Uncomment these triggers to enable hover & click visual feedback for notify icons.
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver"
-                         Value="True">
-                    <Setter Property="Background"
-                            Value="{DynamicResource ButtonHoverBackground}" />
-                    <Setter Property="BorderBrush"
-                            Value="{DynamicResource ButtonHoverBorder}" />
-                </Trigger>
-
-                <DataTrigger Binding="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"
-                             Value="Pressed">
-                    <Setter Property="Background"
-                            Value="{DynamicResource ButtonPressedBackground}" />
-                    <Setter Property="BorderBrush"
-                            Value="{DynamicResource ButtonPressedBorder}" />
-                </DataTrigger>
-            </Style.Triggers>
-            -->
+            <!-- Pressed / Sunken State: Left & Top Shadow -->
+            <DataTrigger Binding="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=Border, AncestorLevel=1}}"
+                     Value="Pressed">
+                <Setter Property="BorderBrush"
+                    Value="{DynamicResource ButtonShadow}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="Image"
@@ -958,9 +978,9 @@
            BasedOn="{StaticResource GlobalFonts}">
         <Setter Property="Foreground"
                 Value="{DynamicResource InputLanguageForeground}" />
-        <Setter Property="Background" 
+        <Setter Property="Background"
                 Value="{DynamicResource InputLanguageBackground}"/>
-        <Setter Property="MinWidth" 
+        <Setter Property="MinWidth"
                 Value="16"/>
         <Setter Property="Height"
                 Value="16"/>
@@ -975,9 +995,9 @@
            BasedOn="{StaticResource GlobalFonts}">
         <Setter Property="Foreground"
                 Value="{DynamicResource InputLanguageSelectorForeground}" />
-        <Setter Property="Background" 
+        <Setter Property="Background"
                 Value="{DynamicResource InputLanguageBackground}"/>
-        <Setter Property="MinWidth" 
+        <Setter Property="MinWidth"
                 Value="16"/>
         <Setter Property="Height"
                 Value="16"/>
@@ -1122,7 +1142,7 @@
                                     Width="3">
                                 <Border BorderThickness="1,1,0,0"
                                         BorderBrush="{DynamicResource ButtonHighlight}">
-                                    
+
                                 </Border>
                             </Border>
                         </Border>
@@ -1172,7 +1192,7 @@
     <Style TargetType="TextBlock"
            x:Key="JapaneseIme"
            BasedOn="{StaticResource GlobalFonts}">
-        <Setter Property="Width" 
+        <Setter Property="Width"
                 Value="16"/>
         <Setter Property="Height"
                 Value="16"/>

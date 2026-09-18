@@ -5,20 +5,33 @@
              Loaded="NotifyIcon_OnLoaded"
              Unloaded="NotifyIcon_OnUnloaded">
     <StackPanel>
+        <!-- Outer Border: Bottom & Right Edges Only -->
         <Border x:Name="NotifyIconBorder"
-                Style="{DynamicResource NotifyIconBorder}"
+                Style="{DynamicResource NotifyIconOuterBorder}"
                 ToolTip="{Binding Path=Title}"
+                Padding="0"
+                Margin="0"
                 MouseUp="NotifyIcon_OnMouseUp"
                 MouseDown="NotifyIcon_OnMouseDown"
                 MouseEnter="NotifyIcon_OnMouseEnter"
                 MouseLeave="NotifyIcon_OnMouseLeave"
                 MouseMove="NotifyIcon_OnMouseMove"
                 PreviewMouseWheel="NotifyIcon_OnPreviewMouseWheel">
-            <Image Source="{Binding Path=Icon, Mode=OneWay}"
-                   Focusable="True"
-                   Name="NotifyIconImage"
-                   Style="{DynamicResource NotifyIcon}" />
+
+            <!-- Inner Border: Top & Left Edges Only -->
+            <Border x:Name="NotifyIconInnerBorder"
+                    Style="{DynamicResource NotifyIconInnerBorder}"
+                    Padding="1"
+                    Margin="0">
+
+                <Image Source="{Binding Path=Icon, Mode=OneWay}"
+                       Focusable="True"
+                       Name="NotifyIconImage"
+                       Style="{DynamicResource NotifyIcon}" />
+
+            </Border>
         </Border>
+
         <local:NotifyBalloon x:Name="BalloonControl" />
     </StackPanel>
 </UserControl>
